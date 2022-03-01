@@ -1,16 +1,12 @@
-import React from "react";
-import Mainpage from "./components/MainPage"
-import Navbar from "./components/Navbar";
-import './index.css'
+import React from 'react';
+import Feed from './pages/Feed';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import {BrowserRouter as Router, Switch} from 'react-router-dom';
-function App() {
+export default function App() {
   return (
     <>
-      <Navbar/>
-      <Mainpage/>
+      <Feed />
     </>
-  )
+  );
 }
-
-export default App;
