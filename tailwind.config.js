@@ -5,7 +5,7 @@ module.exports = {
     theme: {
       extend: {
         backgroundImage:{
-          'home-image': "./client/components/images/office.jpg"
+          'home-image': "../client/components/images/office.jpg"
         }
       },
     },  
