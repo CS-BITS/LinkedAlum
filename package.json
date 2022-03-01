@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack serve ",
+    "dev": "NODE_ENV=development webpack serve --open & NODE_ENV=development nodemon server/server.js",
     "server": "node ./server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,16 +12,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/irinekangg/LinkedAlum.git"
+    "url": "git+https://github.com/CS-BITS/LinkedAlum.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/irinekangg/LinkedAlum/issues"
+    "url": "https://github.com/CS-BITS/LinkedAlum/issues"
   },
-  "homepage": "https://github.com/irinekangg/LinkedAlum#readme",
+  "homepage": "https://github.com/CS-BITS/LinkedAlum#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "pg": "^8.7.3",
     "react": "^17.0.2",

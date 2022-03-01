@@ -3,12 +3,15 @@ const path = require('path');
 const cors = require('cors');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 //  import  routers
-app.use(cookieParser());
+const userRouter = require('./routes/user');
+
+// app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 // serving static files
 app.use(express.static(path.resolve(__dirname, '../client')));
 app.use(cors({
@@ -16,8 +19,8 @@ app.use(cors({
 }));
 
 // Apply routers to path
-app.use('/user', userRouter);
-app.use('/api', apiRouter);
+app.use('/test', userRouter);
+// app.use('/api', apiRouter);
 
 //  Handle all unknown request
 app.use('*', (req, res) => {
