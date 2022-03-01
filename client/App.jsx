@@ -1,5 +1,4 @@
 import React from 'react';
-import Counter from './components/Counter';
 import Feed from './pages/Feed';
 export default function App() {
   return (
