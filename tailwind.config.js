@@ -1,8 +1,14 @@
 module.exports = {
     content: [
-      './src/**/*.{js,jsx,ts,tsx}'
+      './client/**/*.{js,jsx,ts,tsx}'
     ],
-    theme: {},
+    theme: {
+      extend: {
+        backgroundImage:{
+          'home-image': "./client/components/images/office.jpg"
+        }
+      },
+    },  
     plugins: [],
   }
   
