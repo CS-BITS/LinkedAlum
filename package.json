@@ -26,8 +26,15 @@
     "testEnvironment": "jest-environment-jsdom"
   },
   "dependencies": {
+    "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "install": "^0.13.0",
+    "npm": "^8.5.2",
+    "passport": "^0.5.2",
+    "passport-google-oauth2": "^0.2.0",
+    "passport-google-oauth20": "^2.0.0",
     "pg": "^8.7.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
