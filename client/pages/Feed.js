@@ -16,6 +16,7 @@ const MockData = [
 export default function Feed() {
   const [feedData, setFeedData] = useState([]);
   //useeffect to get from DB to get all posts, map data inside feedDisplay
+  //
   return (
     <div className='FeedContainer'>
       <div>Nav</div>
