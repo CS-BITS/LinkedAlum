@@ -11,8 +11,11 @@ export default function FeedInput() {
 
   return (
     <div className='FeedInput'>
-      <input type='text' className='feedInput' placeholder='Message...' />
+      <div className="flex flex-col justify-center items-center">
+        <input className='text-center h-15 w-80'type='text' placeholder='Message...' />
+      
       <button onClick={() => handleSubmit()}>Submit</button>
+      </div>  
     </div>
   );
 }

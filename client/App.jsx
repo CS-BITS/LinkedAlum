@@ -7,8 +7,13 @@ import { Link } from 'react-router-dom';
 
 export default function App() {
   return (
-    <div>
-      <Mainpage/>
-    </div>
+    
+<Router>
+  <Routes>
+    <Route path="/" element={<Mainpage/>} />
+    <Route path="/feed" element={<Feed/>} />
+  </Routes>
+</Router>
+      
   );
 }

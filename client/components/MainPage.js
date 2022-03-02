@@ -2,6 +2,7 @@ import React from 'react'
 import GoogleSign from './images/GoogleSign.png'
 import GitHubLogin from './images/github.png'
 import '../index.css'
+import Navbar from './Navbar';
 const Mainpage = () => {
     function GoogleButton(){
         console.log('Google Button is Clicked')
@@ -11,6 +12,7 @@ const Mainpage = () => {
     }
 return (
     <div>
+        <Navbar/>   
     <div className='bg-white h-screen flex flex-col justify-center items-center'>
         <h2 className='lg:text-9xl md:text-7xl sm:text-5xl text-3xl font-black mb-14'>
             LinkedAlum
