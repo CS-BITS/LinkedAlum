@@ -10,7 +10,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(cors());
 
-// app.use(cookieParser());
+//  import  routers
+const userRouter = require('./routes/user');
+const postsRouter = require('./routes/posts');
+const commentsRouter = require('./routes/comments');
+const authRouter = require('./routes/auth');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,12 +27,10 @@ app.use(session({ secret: 'cat', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-//  import  routers
-const userRouter = require('./routes/user');
-const authRouter = require('./routes/auth');
-
 app.use('/test', userRouter);
 app.use('/auth', authRouter);
+app.use('/posts', postsRouter);
+app.use('/comments', commentsRouter);
 
 
 //catches unknown routes 
