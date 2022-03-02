@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Post.css';
 export default function Post(props) {
+  const [likes, setLikes] = useState(0);
+  useEffect(() => {
+    setLikes((likes) => (likes = props.likes));
+  }, []);
+  function handleLikeClick() {
+    //send updated like to db
+    setLikes((likes) => (likes += 1));
+  }
   return (
     <div className='PostContainer' key={props.post_id}>
       <div className='UserInfo'>
@@ -10,7 +18,9 @@ export default function Post(props) {
       <div className='PostInfo'>
         <div className='PostMessage'>{props.message}</div>
         <div className='LikeComment'>
-          <div className='LikeCounter'>{props.likes}</div>
+          <button className='LikeCounter' onClick={() => handleLikeClick()}>
+            {likes} Likes
+          </button>
           <div className='CommentContainer'>
             {/* prolly need to map out comments in this section and have a scroll */}
             {0} comments

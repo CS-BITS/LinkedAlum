@@ -9,6 +9,7 @@ export default function App() {
   return (
     <div>
       <Mainpage />
+      <Feed />
     </div>
   );
 }
