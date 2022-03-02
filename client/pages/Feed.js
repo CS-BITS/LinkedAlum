@@ -6,12 +6,51 @@ import FeedInput from '../components/FeedInput';
 import Post from '../components/Post';
 
 const MockData = [
-  { user_id: 1, post_id: 1, message: 'please end this', likes: 6 },
+  {
+    user_id: 1,
+    post_id: 1,
+    message: 'please end this',
+    likes: 6,
+    comments: [
+      {
+        comment_id: 1,
+        message: 'post1 comment1',
+        user_name: 'user1',
+      },
+    ],
+  },
   {
     user_id: 2,
     post_id: 2,
     message: 'pleaseeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
     likes: 6,
+    comments: [
+      {
+        comment_id: 2,
+        message: 'post2 comment1',
+        user_name: 'user2',
+      },
+      {
+        comment_id: 2,
+        message: 'post2 comment1',
+        user_name: 'user2',
+      },
+      {
+        comment_id: 2,
+        message: 'post2 comment1',
+        user_name: 'user2',
+      },
+      {
+        comment_id: 2,
+        message: 'post2 comment1',
+        user_name: 'user2',
+      },
+      {
+        comment_id: 2,
+        message: 'post2 comment1',
+        user_name: 'user2',
+      },
+    ],
   },
 ];
 
@@ -19,12 +58,14 @@ export default function Feed() {
   const feedData = useSelector((state) => state.feedData.value);
   const dispatch = useDispatch();
   //useeffect to get from DB to get all posts, map data inside feedDisplay
+  function getPosts() {
+    //fetch function
+  }
   useEffect(() => {
     dispatch(setFeed(MockData));
   }, []);
   return (
     <div className='FeedContainer'>
-      <div>Nav</div>
       <div className='MainFeed'>
         <FeedInput />
         <div className='FeedDisplay'>
@@ -36,6 +77,7 @@ export default function Feed() {
                 post_id={ele.post_id}
                 message={ele.message}
                 likes={ele.likes}
+                comments={ele.comments}
               />
             );
           })}
