@@ -9,6 +9,4 @@ const router = express.Router();
 router.get('/', dbController.getAll,
     (req, res) => res.send(res.locals.test) );  //.sendStatus(200));
 
-
-
 module.exports = router;
