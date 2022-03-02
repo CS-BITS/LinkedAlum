@@ -13,7 +13,6 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Mainpage />} />
           <Route path='/feed' element={<Feed />} />
-          {/* <Route path='/feed'><Feed /></Route> */}
         </Routes>
       </BrowserRouter>
     </div>

@@ -40,9 +40,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      // inject: false,
+      inject: false,
       template: path.resolve(__dirname, './client/index.html'),
-      // filename: './index.html',
+      filename: './index.html',
     }),
   ],
   devServer: {

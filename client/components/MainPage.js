@@ -1,22 +1,21 @@
 import React from 'react';
 import GoogleSign from './images/GoogleSign.png';
-import GitHubLogin from './images/github.png';
 import '../index.css';
 import Navbar from './NavBar';
 const Mainpage = () => {
   //onclick function that will do a fetch request to localhost3000/auth/google
-  function GoogleButton() {
-    fetch('http://localhost:3000/auth/google', {
-      mode: 'cors',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-    })
-      .then(() => {
-        console.log('success');
-      })
-      .catch((error) => console.log(`ERROR in going to auth route ${error}`));
-  }
+  // function GoogleButton() {
+  //   fetch('http://localhost:3000/auth/google', {
+  //     mode: 'cors',
+  //     headers: {
+  //       'Access-Control-Allow-Origin': '*',
+  //     },
+  //   })
+  //     .then(() => {
+  //       console.log('success');
+  //     })
+  //     .catch((error) => console.log(`ERROR in going to auth route ${error}`));
+  // }
 
   return (
     <div>
