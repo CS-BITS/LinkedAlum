@@ -5,69 +5,27 @@ import './Feed.css';
 import FeedInput from '../components/FeedInput';
 import Post from '../components/Post';
 
-const MockData = [
-  {
-    user_id: 1,
-    post_id: 1,
-    message: 'please end this',
-    likes: 6,
-    comments: [
-      {
-        comment_id: 1,
-        message: 'post1 comment1',
-        user_name: 'user1',
-      },
-    ],
-  },
-  {
-    user_id: 2,
-    post_id: 2,
-    message: 'pleaseeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-    likes: 6,
-    comments: [
-      {
-        comment_id: 2,
-        message: 'post2 comment1',
-        user_name: 'user2',
-      },
-      {
-        comment_id: 2,
-        message: 'post2 comment1',
-        user_name: 'user2',
-      },
-      {
-        comment_id: 2,
-        message: 'post2 comment1',
-        user_name: 'user2',
-      },
-      {
-        comment_id: 2,
-        message: 'post2 comment1',
-        user_name: 'user2',
-      },
-      {
-        comment_id: 2,
-        message: 'post2 comment1',
-        user_name: 'user2',
-      },
-    ],
-  },
-];
-
 export default function Feed() {
   const feedData = useSelector((state) => state.feedData.value);
   const dispatch = useDispatch();
   //useeffect to get from DB to get all posts, map data inside feedDisplay
   function getPosts() {
-    //fetch function
+    fetch('http://localhost:3000/posts')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('DBData', data);
+        dispatch(setFeed(data));
+      })
+      .catch((err) => console.log('err', err));
   }
   useEffect(() => {
-    dispatch(setFeed(MockData));
+    getPosts();
   }, []);
   return (
     <div className='FeedContainer'>
       <div className='MainFeed'>
         <FeedInput />
+        <br></br>
         <div className='FeedDisplay'>
           {/* map out data array coming from DB passing in relevant values as props into post component */}
           {feedData.map((ele) => {
@@ -78,6 +36,7 @@ export default function Feed() {
                 message={ele.message}
                 likes={ele.likes}
                 comments={ele.comments}
+                user_name={ele.user_name}
               />
             );
           })}

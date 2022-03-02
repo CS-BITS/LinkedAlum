@@ -9,7 +9,7 @@ const Navbar = () => {
       role='navigation'
     >
       <Link to='/' className='pl-8'>
-        LinkedAlumn
+        LinkedList
       </Link>
       <div className='pr-8 md:block'>
         <Link to='/feed' className='pl-9'>

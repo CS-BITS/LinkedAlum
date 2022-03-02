@@ -1,10 +1,13 @@
 const { Pool } = require('pg');
+require('dotenv').config();
 
-const PG_URI = 'postgres://srmawbql:ShVMib9z32sP3kuMfLMqKgFY3tdT-OOx@jelani.db.elephantsql.com/srmawbql';
+const PG = process.env.PG_URI;
+
+const PG_URI = PG;
 
 // create a new pool here using the connection string above
 const pool = new Pool({
-  connectionString: PG_URI
+  connectionString: PG_URI,
 });
 
 // We export an object that contains a property called query,
@@ -17,5 +20,5 @@ module.exports = {
   },
   end() {
     return pool.end();
-  }
+  },
 };

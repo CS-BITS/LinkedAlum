@@ -6,36 +6,39 @@ require('../passportSetup');
 
 const auth = express.Router();
 
+//using passport to ask users to authenticate with google
+auth.get(
+  '/google',
+  passport.authenticate('google', { scope: ['email', 'profile'] })
+);
 
-//using passport to ask users to authenticate with google 
-auth.get('/google',
-  passport.authenticate('google', { scope: [ 'email', 'profile' ] }
-)); 
-
-//callback for google to communicate after logging in 
-auth.get('/google/callback',
+//callback for google to communicate after logging in
+auth.get(
+  '/google/callback',
   passport.authenticate('google', {
-    successRedirect: 'http://localhost:8080/',
-    failureRedirect: '/auth/google/failure'
+    successRedirect: 'http://localhost:8080',
+    // successRedirect: '/auth/protected',
+    // successRedirect: '/auth/feed',
+    failureRedirect: '/auth/google/failure',
   })
 );
 
-//protected with auth, with loggedIn controller 
-// auth.get('/', authController.isLoggedIn, (req, res) => {
+// protected with auth, with loggedIn controller
+// auth.get('/protected', (req, res) => {
 //   res.send(`hello ${req.user.displayName}`);
-//   console.log(req.user)
+//   // console.log('req.user', req.user);
 // });
 
-//logout route 
+//logout route
 auth.get('/logout', (req, res) => {
   req.logout();
   req.session.destroy();
   res.send('Goodbye!');
 });
 
-//failure to auth route 
+//failure to auth route
 auth.get('/google/failure', (req, res) => {
   res.send('Failed to authenticate..');
 });
 
-module.exports = auth; 
+module.exports = auth;

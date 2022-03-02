@@ -2,14 +2,20 @@ import React from 'react';
 import Mainpage from './components/MainPage';
 import NavBar from './components/NavBar.js';
 import Feed from './pages/Feed';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-
+// import { Router } from 'react-router';
+import { BrowserRouter, Routes, Route, browserHistory } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+const customHistory = createBrowserHistory();
 export default function App() {
   return (
     <div>
-      <Mainpage />
-      <Feed />
+      <BrowserRouter history={customHistory}>
+        <Routes>
+          <Route path='/' element={<Mainpage />} />
+          <Route path='/feed' element={<Feed />} />
+          {/* <Route path='/feed'><Feed /></Route> */}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
