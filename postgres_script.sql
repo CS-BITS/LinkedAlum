@@ -15,9 +15,9 @@ CREATE TABLE "comments"(
 );
 ALTER TABLE "comments" ALTER COLUMN created_at SET DEFAULT now();
 CREATE TABLE "user"(
-    "user_id" SERIAL PRIMARY KEY,
+    "user_id" numeric PRIMARY KEY,
     "user_name" VARCHAR(255) NOT NULL,
-    "password" VARCHAR(255) NOT NULL,
+    "photo_url" VARCHAR(255) NOT NULL,
     "first_name" VARCHAR(255) NOT NULL,
     "last_name" VARCHAR(255) NOT NULL,
     "email_address" VARCHAR(255) NOT NULL,

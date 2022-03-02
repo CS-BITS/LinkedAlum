@@ -1,11 +1,19 @@
-.PostContainer {
+/* .PostContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   border: 1px solid black;
-}
-.LikeComment {
+} */
+/* .LikeComment {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
+.CommentBox {
+  display: flex;
+  flex-direction: row;
+}
+/* .UserInfo {
+  display: flex;
+  flex-direction: column;
+} */ 

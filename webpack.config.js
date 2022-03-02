@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
   // entry point of our app
   entry: './client/index.js',
@@ -15,40 +14,46 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/, 
+        test: /\.jsx?/,
         exclude: /node_modules/,
-        loader: 'babel-loader', 
+        loader: 'babel-loader',
         options: {
           presets: ['@babel/env', '@babel/react'],
-        }
-      },      
+        },
+      },
       {
         test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'postcss-loader' }],
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
+        ],
       },
       {
         test: /\.(jpe?g|png|gif)$/,
         loader: 'file-loader',
         options: {
-          name: '[path][name].[ext]'
-        }
+          name: '[path][name].[ext]',
+        },
       },
-    ]
+    ],
   },
-  plugins: [new HtmlWebpackPlugin({
-    inject: false,
-    template: path.resolve(__dirname, './client/index.html'),
-    filename: "./index.html"
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      // inject: false,
+      template: path.resolve(__dirname, './client/index.html'),
+      // filename: './index.html',
+    }),
+  ],
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),
-      publicPath: "/",
+      publicPath: '/',
     },
     compress: true,
     port: 8080,
     proxy: {
-      '/auth': 'http://localhost:3000'
-    }
+      '/auth': 'http://localhost:3000',
+    },
   },
 };

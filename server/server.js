@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const session = require('express-session');
 const passport = require('passport');
@@ -18,27 +19,27 @@ const authRouter = require('./routes/auth');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cookieParser());
 // serving static files
 app.use(express.static(path.resolve(__dirname, '../client')));
+// app.use(express.static(path.resolve(__dirname, '../build')));er
 
-//express session, intialize passport 
+//express session, intialize passport
 app.use(session({ secret: 'cat', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/test', userRouter);
+app.use('/user', userRouter);
 app.use('/auth', authRouter);
 app.use('/posts', postsRouter);
 app.use('/comments', commentsRouter);
 
-
-//catches unknown routes 
+//catches unknown routes
 app.use('*', (req, res) => {
   res.status(404).send('Not Found');
 });
 
-//global error handler 
+//global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
@@ -50,7 +51,7 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-//listen to port 
+//listen to port
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 });
