@@ -3,8 +3,21 @@ import GoogleSign from './images/GoogleSign.png'
 import GitHubLogin from './images/github.png'
 import '../index.css'
 const Mainpage = () => {
-    function GoogleButton(){
-        console.log('Google Button is Clicked')
+
+    function GoogleButton(){       
+        // const googleAuth = {
+        //     method: 'POST',
+        //     headers: {
+        //       'Content-Type': 'application/json; charset=utf-8'
+        //     }, 
+        //     body: JSON.stringify({})
+        //   };
+          
+        fetch('http://localhost:3000/auth/google')
+        .then(() => {
+        console.log('success');
+        })
+        .catch((error) => console.log(`ERROR in going to auth route ${error}`));
     }
     function GithubButton(){
         console.log('GitHub Button is Clicked')
@@ -20,11 +33,11 @@ return (
         </h3>
         <br></br>
         <button>
+            <a href="/auth/google"><img className='h-12 w-38'src={GoogleSign}/></a>
+        </button>
+        {/* <button>
             <img className='h-12 w-38'src={GoogleSign} onClick={GoogleButton} />
-        </button>
-        <button>
-            <img className='h-12 w-38'src={GitHubLogin} onClick={GithubButton} />
-        </button>
+        </button> */}
     </div>
     </div>
   );

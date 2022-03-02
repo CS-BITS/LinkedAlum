@@ -8,64 +8,73 @@ require('./passportSetup');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.use(cors());
 
-//  import  routers
-const userRouter = require('./routes/user');
-app.use('/test', userRouter);
+//middleware controller to check logged in status 
+function isLoggedIn(req, res, next) {
+  req.user ? next() : res.sendStatus(401);
+}
 
 // app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // serving static files
-// app.use(express.static(path.resolve(__dirname, '../client')));
-// app.use(cors({
-//   origin: '*'
-// }));
+app.use(express.static(path.resolve(__dirname, '../client')));
 
-function isLoggedIn(req, res, next) {
-  req.user ? next() : res.sendStatus(401);
-}
+//  import  routers
+const userRouter = require('./routes/user');
+app.use('/test', userRouter);
 
+
+//express session, intialize passport 
 app.use(session({ secret: 'cat', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res) => {
+//
+app.get('/auth', (req, res) => {
   res.send('<a href="/google">Authenticate with Google</a>');
 });
 
-app.get('/google',
+//using passport to ask users to authenticate with google 
+app.get('/auth/google',
   passport.authenticate('google', { scope: [ 'email', 'profile' ] }
 ));
 
-app.get('/google/callback',
+//callback for google to communicate after logging in 
+app.get('/auth/google/callback',
   passport.authenticate( 'google', {
-    successRedirect: '/protected',
-    failureRedirect: '/google/failure'
+    successRedirect: '/auth/protected',
+    failureRedirect: '/auth/google/failure'
   })
 );
 
-app.get('/protected', isLoggedIn, (req, res) => {
+//protected with auth, with loggedIn controller route 
+app.get('/auth/protected', isLoggedIn, (req, res) => {
   const img = req.user.picture;
-  res.send('');
+  res.send(`hello ${req.user.displayName}`);
   console.log(req.user)
 });
 
-app.get('/logout', (req, res) => {
+//logout route 
+app.get('/auth/logout', (req, res) => {
   req.logout();
   req.session.destroy();
   res.send('Goodbye!');
 });
 
-app.get('/google/failure', (req, res) => {
+//failure to auth route 
+app.get('/auth/google/failure', (req, res) => {
   res.send('Failed to authenticate..');
 });
 
+//catches unknown routes 
 app.use('*', (req, res) => {
   res.status(404).send('Not Found');
 });
 
+//global error handler 
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
@@ -77,6 +86,7 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
+//listen to port 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 });
