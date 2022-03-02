@@ -15,7 +15,7 @@ auth.get('/google',
 //callback for google to communicate after logging in 
 auth.get('/google/callback',
   passport.authenticate('google', {
-    successRedirect: 'http://localhost:8080/',
+    successRedirect: 'http://localhost:8080/feed',
     failureRedirect: '/auth/google/failure'
   })
 );
